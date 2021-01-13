@@ -27,6 +27,12 @@ export default {
     method1(n) {
       console.log("method1:", this.integer1 * n);
     },
+    wathInteger1() {
+      console.log("wathInteger1: ", this.integer1);
+    },
+  },
+  watch: {
+    integer1: "wathInteger1",
   },
   mounted() {
     this.method1(2);
