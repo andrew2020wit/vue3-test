@@ -2,10 +2,11 @@
   <h1>App</h1>
   <input v-model="integer1" />
   <p>integer1: {{ integer1 }}</p>
+  <p>computed1: {{ computed1 }}</p>
 </template>
 
 <script>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 export default {
   name: "App",
   setup() {
@@ -20,11 +21,17 @@ export default {
       console.log("wathInteger1: ", integer1.value);
     };
 
+    const computed1 = computed(() => {
+      const r = "computed: " + integer1.value;
+      console.log(r);
+      return r;
+    });
+
     watch(integer1, wathInteger1);
 
     onMounted(method1);
 
-    return { integer1, method1 };
+    return { integer1, method1, computed1 };
   },
   data() {
     return {
