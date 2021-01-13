@@ -6,15 +6,20 @@
 </template>
 
 <script>
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, watch, computed, toRefs } from "vue";
 export default {
   name: "App",
   setup() {
     console.log("setup");
     let integer1 = ref(101);
 
+    const obj = { a: "a1", b: "b1" };
+
+    const objRef = toRefs(obj);
+
     const method1 = () => {
       console.log("method1:", integer1.value * 2);
+      console.log("objRef.a.value: ", objRef.a.value);
     };
 
     const wathInteger1 = () => {
