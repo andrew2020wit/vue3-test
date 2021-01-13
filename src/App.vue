@@ -5,13 +5,26 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 export default {
   name: "App",
   setup() {
     console.log("setup");
     let integer1 = ref(101);
-    return { integer1 };
+
+    const method1 = () => {
+      console.log("method1:", integer1.value * 2);
+    };
+
+    const wathInteger1 = () => {
+      console.log("wathInteger1: ", integer1.value);
+    };
+
+    watch(integer1, wathInteger1);
+
+    onMounted(method1);
+
+    return { integer1, method1 };
   },
   data() {
     return {
@@ -22,20 +35,6 @@ export default {
       arr3: [301, 302],
       obj1: { a: "a1", b: "b2" },
     };
-  },
-  methods: {
-    method1(n) {
-      console.log("method1:", this.integer1 * n);
-    },
-    wathInteger1() {
-      console.log("wathInteger1: ", this.integer1);
-    },
-  },
-  watch: {
-    integer1: "wathInteger1",
-  },
-  mounted() {
-    this.method1(2);
   },
 };
 </script>
